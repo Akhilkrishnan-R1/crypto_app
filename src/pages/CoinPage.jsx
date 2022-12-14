@@ -33,6 +33,7 @@ const CoinPage = () => {
 
     useEffect(() => {
       fetchSingleCoin()
+     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, currency])
 
     
