@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { crypto, CryptoState } from '../Context/GlobalContext'
+import React from 'react'
+import { CryptoState } from '../Context/GlobalContext'
 
 
 
@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
    <div className='p-3 flex justify-between h-auto'>
     <div>
-      <h2 on className='text-orange-500 font-semibold md:text-3xl text-xl cursor-pointer'>
+      <h2 className='text-orange-500 font-semibold md:text-3xl text-xl cursor-pointer'>
         CRYPTO TRACKER
       </h2>
     </div>

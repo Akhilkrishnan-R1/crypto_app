@@ -17,16 +17,10 @@ const Homepage = () => {
 
   const navigate = useNavigate()
 
-  const coinApi = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
-
-  const fetchApi = async () => {
-    await axios.get(coinApi).then(res => setCoins(res.data))
-    setLoading(false)
-  }
 
   useEffect(() => {
-   fetchApi()
-   
+     axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false`).then(res => setCoins(res.data))
+    setLoading(false)
   },[currency])
 
   
@@ -35,10 +29,11 @@ const Homepage = () => {
   }
 
   const handleSearch = () => {
-    return coins.filter(
+    return ( coins.filter(
       (coin) =>
         coin.name.toLowerCase().includes(search) ||
         coin.symbol.toLowerCase().includes(search)
+    )
     );
   };
  
@@ -83,7 +78,7 @@ const Homepage = () => {
             <tr onClick={() => handleNavigate(`/coin/${item.id}`)} key={index} className='text-white border-b-[.002px] '>
               <td className='p-2'>
                 <div className='flex '>
-                <img className='w-10' src={item?.image} alt="" />
+                <img className='w-10' src={item?.image} alt="coin logo" />
                 
                 </div>
                 <p className='uppercase ml-2'>{item?.symbol}</p>
@@ -104,7 +99,7 @@ const Homepage = () => {
                 </td>
                 <td>
                   <p>
-                  {Symbol}{" "}
+                  {Symbol()}{" "}
                           {numberWithCommas(
                             item.market_cap.toString().slice(0, -6)
                           )}
