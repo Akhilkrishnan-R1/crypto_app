@@ -23,14 +23,16 @@ const CoinPage = () => {
         
     }, [id,days,currency])
 
- 
-    
+    const singleCoinApi = `https://api.coingecko.com/api/v3/coins/${id}`
+
+    const fetchSingleCoin = async () => {
+      await axios.get(singleCoinApi)
+      .then((res) => setSingleCoin(res.data) )
+      setLoading(false)
+    }
 
     useEffect(() => {
-        axios.get(`https://api.coingecko.com/api/v3/coins/${id}`
-        )
-        .then((res) => setSingleCoin(res.data) )
-        setLoading(false)
+      fetchSingleCoin()
     }, [id, currency])
 
     
